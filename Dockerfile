@@ -19,4 +19,4 @@ FROM scratch
 COPY --from=builder /usr/src/app/mandelbrot-simd-out.wasm /
 
 # Run the web service on container startup.
-CMD ["/mandelbrot-simd-out.wasm", "15000"]
+CMD ["/mandelbrot-simd-out.wasm", "15"]
