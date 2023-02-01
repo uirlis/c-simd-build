@@ -8,15 +8,15 @@ RUN emcc -g -Oz --llvm-lto 1 -s STANDALONE_WASM -s INITIAL_MEMORY=32MB -s MAXIMU
     -mmutable-globals \
     -mnontrapping-fptoint \
     -msign-ext \
-    mandelbrot-simd.c -o mandelbrot-simd.wasm
+    mandelbrot.c -o mandelbrot.wasm
 
 #AOT Code
-RUN wasmedgec mandelbrot-simd.wasm mandelbrot-simd-out.wasm
+RUN wasmedgec mandelbrot.wasm mandelbrot-aot.wasm
 
-RUN wasmedge mandelbrot-simd-out.wasm
+RUN wasmedge mandelbrot-aot.wasm
 FROM scratch
 
-COPY --from=builder /usr/src/app/mandelbrot-simd-out.wasm /
+COPY --from=builder /usr/src/app/mandelbrot-aot.wasm /
 
 # Run the web service on container startup.
 CMD ["/mandelbrot-simd-out.wasm", "15"]
