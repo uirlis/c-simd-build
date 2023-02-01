@@ -3,6 +3,8 @@ An sample build system for c applications targeting WASM and crun.
 
 Based on https://wasmedge.org/book/en/write_wasm/c/simd.html
 
+The project also provides [a pod definition](./pod.yaml) to simplify the deployment of the container in podman.
+
 ## notes
 This project already assumes you have a recent(=> 4.2) [podman installed](https://podman.io/getting-started/installation) on a fedora flavoured distro.
 
@@ -10,7 +12,9 @@ The build for the WASM container relies on [base.Dockerfile](./base.Dockerfile) 
 
 See the [main Dockerfile](./Dockerfile) for details on the specific steps.
 
-# build a wasm compatible crun
+## build a wasm compatible crun
+
+On the fedora machine run the following set of commands:
 
 ```bash
 # Install dependancies for Fedora based distros
@@ -52,5 +56,13 @@ podman logs c-simd-pod-container
   ���3�;���;�3����  P4
 16 16
   ���3�;���;�3����  P4
+...
+```
+
+## check the size of the image
+```
+podman image ls | grep c-simd-build
+...
+quay.io/urilis/c-simd-build                             latest             bc1999129295  4 hours ago    168 kB
 ...
 ```
