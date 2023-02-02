@@ -1,4 +1,4 @@
-# c-simd-build
+# mandlebrot-c-podman-wasm
 An sample build system for c applications targeting WASM and crun.
 
 Based on https://github.com/second-state/wasm32-wasi-benchmark/blob/master/src/mandelbrot.c
@@ -21,7 +21,7 @@ On the fedora machine run the following set of commands:
 dnf install -y git python3 which redhat-lsb-core systemd-devel yajl-devel libseccomp-devel pkg-config libgcrypt-devel \
     glibc-static python3-libmount libtool libcap-devel
 
-# Install the wasmedge libraries
+# Install the wasmedge libraries wasmtime may also be an option
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -e all -p /usr/local --version=0.11.2
 
 # Clone and build crun
@@ -61,8 +61,8 @@ podman logs mandlebrot-c-podman-wasm-container
 
 ## 5. check the size of the image
 ```
-podman image ls | grep c-simd-build
+podman image ls | grep mandlebrot-c-podman-wasm
 ...
-quay.io/urilis/c-simd-build latest bc1999129295  4 hours ago 168 kB
+quay.io/urilis/mandlebrot-c-podman-wasm latest bc1999129295  4 hours ago 168 kB
 ...
 ```
