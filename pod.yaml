@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: c-simd-pod
+  name: mandlebrot-c-podman-wasm-pod
   annotations:
     module.wasm.image/variant: compat-smart
 spec:
   containers:
     - name: container
-      image: c-simd-wasm
+      image: mandlebrot-c-podman-wasm

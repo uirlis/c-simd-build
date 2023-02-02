@@ -12,7 +12,7 @@ The build for the WASM container relies on [base.Dockerfile](./base.Dockerfile) 
 
 See the [main Dockerfile](./Dockerfile) for details on the specific steps.
 
-## build a wasm compatible crun
+## 1. build a wasm compatible crun
 
 On the fedora machine run the following set of commands:
 
@@ -37,20 +37,20 @@ sudo mv ${crun_loc} ${crun_loc}.backup
 sudo mv crun ${crun_loc} 
 ```
 
-## build the c file in the container
+## 2. build the c file in the container
 ```
-podman build -t c-simd-wasm .
+podman build -t mandlebrot-c-podman-wasm .
 ```
 
-## run
+## 3. run
 
 ```
 podman play kube pod.yaml
 ```
 
-## view logs
+## 4. view logs
 ```
-podman logs c-simd-pod-container
+podman logs mandlebrot-c-podman-wasm-container
 ...
 16 16
   ���3�;���;�3����  P4
@@ -59,10 +59,10 @@ podman logs c-simd-pod-container
 ...
 ```
 
-## check the size of the image
+## 5. check the size of the image
 ```
 podman image ls | grep c-simd-build
 ...
-quay.io/urilis/c-simd-build                             latest             bc1999129295  4 hours ago    168 kB
+quay.io/urilis/c-simd-build latest bc1999129295  4 hours ago 168 kB
 ...
 ```
